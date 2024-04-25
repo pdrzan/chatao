@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-	<div> O chatão começa aqui! </div>
+	<RouterView/>
 </template>
 
 <style scoped>
