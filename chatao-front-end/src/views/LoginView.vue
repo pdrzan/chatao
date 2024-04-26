@@ -1,5 +1,5 @@
 <script setup>
-import CaixaLogin from '../components/CaixaLogin.vue'
+import CaixaLogin from '../components/LoginSection.vue'
 </script>
 <template>
 <div class="main">
@@ -11,5 +11,7 @@ import CaixaLogin from '../components/CaixaLogin.vue'
     display: flex;
     align-items: center;
     justify-content: center;
+
+    min-height: 100vh;
 }
 </style>
