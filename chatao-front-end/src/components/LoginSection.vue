@@ -1,10 +1,13 @@
 <script setup>
-import Botao from './Botao.vue'
+import Botao from './Button.vue'
+import InputText from './InputText.vue';
 </script>
 <template>
 <div class="caixa">
     <img src="./../assets/media/logo.png" alt="chatao's logo"/>
     <div class="title">Bem vindo ao Chatão!</div>
+    <InputText text="Email" id="email" placeholder="Digite seu email" name="email"/>
+    <InputText text="Senha" id="password" placeholder="Digite sua senha" name="password"/>
     <div class="createAccount">Não possui conta? Crie uma agora clicando <a href="#">aqui</a></div>
     <Botao text="Login"/>
 </div>
