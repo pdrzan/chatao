@@ -17,3 +17,8 @@
 body {
     background-color: var(--white);
 }
+
+#app {
+    min-width: 100vw;
+    min-height: 100vh;
+}
