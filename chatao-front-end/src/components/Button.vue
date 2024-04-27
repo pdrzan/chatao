@@ -14,5 +14,6 @@ const props = defineProps(['text'])
     font-size: 24px;
     border-radius: 15px;
     border: none;
+	font-weight: 600;
 }
 </style>

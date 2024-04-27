@@ -1,16 +1,16 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
 import Button from './Button.vue'
 import InputText from './InputText.vue';
+import InputPassword from './InputPassword.vue';
 </script>
 <template>
 <div class="caixa">
     <img src="./../assets/media/logo.png" alt="chatao's logo"/>
-    <div class="title">Bem vindo ao Chatão!</div>
+	<div class="title"> Crie sua conta </div>
+    <InputText text="Nome" id="name" placeholder="Digite seu nome" name="name"/>
     <InputText text="Email" id="email" placeholder="Digite seu email" name="email"/>
-    <InputText text="Senha" id="password" placeholder="Digite sua senha" name="password"/>
-    <div class="createAccount"> Não possui conta? Crie uma agora clicando <RouterLink to="/signup" >aqui</RouterLink></div>
-    <Button text="Login"/>
+    <InputPassword id="password" name="password"/>
+	<Button text="Criar sua conta"/>
 </div>
 </template>
 <style scoped>
@@ -33,12 +33,5 @@ import InputText from './InputText.vue';
     font-weight: bold;
     color: white;
     text-shadow: 1px 1px 2px rgb(56, 56, 56);
-}
-.createAccount {
-    color: white;
-    font-size: 16px;
-}
-.createAccount a {
-    color: white;
 }
 </style>

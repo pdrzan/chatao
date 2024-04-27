@@ -1,9 +1,9 @@
 <script setup>
-import LoginSection from '../components/LoginSection.vue'
+import SignUpSection from '../components/SignUpSection.vue'
 </script>
 <template>
 <div class="main">
-    <LoginSection/>
+	<SignUpSection/>
 </div>
 </template>
 <style scoped>
