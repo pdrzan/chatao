@@ -17,5 +17,6 @@ const props = defineProps({
     background-color: var(--green-light);
     border: none;
     border-radius: 15px;
+	flex-grow: 1;
 }
 </style>
