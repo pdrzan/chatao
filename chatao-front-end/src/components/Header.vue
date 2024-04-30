@@ -1,15 +1,16 @@
 <script setup>
+import { RouterLink } from 'vue-router'
 </script>
 <template>
 <div class="header">
 	<div class="logo">
 		<img class="logo-img" src="./../assets/media/logo.png" alt="chatao's logo"/>
-		<div class="logo-text"> Chatão </div>
+		<div class="logo-text">Chatão</div>
 	</div>
-	<div class="profile">
+	<RouterLink class="profile">
 		<img class="profile-photo" src="./../assets/media/user.png" alt="user's photo"/>
-		<div class="profile-text"> Visualizar Perfil </div>
-	</div>
+		<div class="profile-text">Visualizar Perfil</div>
+	</RouterLink>
 </div>
 </template>
 <style scoped>
@@ -34,7 +35,7 @@
 .logo-text {
 	font-size: 32px;
 	font-weight: 700;
-    text-shadow: 1px 1px 3px rgb(56, 56, 56);
+    text-shadow: 1px 1px 1.5px rgb(56, 56, 56);
 }
 .logo-img {
 	width: 84px;
@@ -44,10 +45,17 @@
 	justify-content: center;
 	align-items: center;
 	gap: 15px;
+	text-decoration: none;
+}
+.profile-photo {
+	width: 40px;
 }
 .profile-text {
  	color: var(--green-dark);
 	font-size: 32px;
 	font-weight: 700;
+}
+.profile-text:hover {
+	text-decoration: underline;
 }
 </style>
