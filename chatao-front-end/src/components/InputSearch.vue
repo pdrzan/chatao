@@ -30,5 +30,6 @@ import BoxText from './BoxText.vue';
     width: 100%;
     border: none;
     background-color: var(--green-light);
+	font-size: 16px;
 }
 </style>
