@@ -7,7 +7,7 @@ import { RouterLink } from 'vue-router'
 		<img class="logo-img" src="./../assets/media/logo.png" alt="chatao's logo"/>
 		<div class="logo-text">Chatão</div>
 	</div>
-	<RouterLink class="profile">
+	<RouterLink class="profile" to="/profile">
 		<img class="profile-photo" src="./../assets/media/user.png" alt="user's photo"/>
 		<div class="profile-text">Visualizar Perfil</div>
 	</RouterLink>

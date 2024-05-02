@@ -15,5 +15,9 @@ const props = defineProps(['text'])
     border-radius: 15px;
     border: none;
 	font-weight: 600;
+    box-shadow: 1px 1px 3px rgb(56, 56, 56);
+}
+.botao:active {
+    box-shadow: -1px -1px 3px rgb(56, 56, 56);
 }
 </style>
