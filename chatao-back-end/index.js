@@ -4,7 +4,33 @@ app.use(express.json())
 const port = 3000
 const router = express.Router()
 
-async function digestMessage(message) {
+function verifyRequest(required_attrs, req)
+{
+	for(let i = 0; i < required_attrs.length; i++)
+	{
+		if(!Object.hasOwn(req.body, required_attrs[i]))
+		{
+			return false
+		}
+	}
+	if(Object.keys(req.body).length != required_attrs.length)
+	{
+		return false
+	}
+	return true
+}
+
+function verifyUserOnline(user)
+{
+	return active_users[user] != undefined
+}
+
+function sendBadRequest()
+{
+	res.status(400).send('Bad Request')
+}
+
+async function toHash(message) {
 	const msgUint8 = new TextEncoder().encode(message);
 	const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8);
 	const hashArray = Array.from(new Uint8Array(hashBuffer));
@@ -19,48 +45,30 @@ let active_users = {}
 
 router.post('/login', async function(req, res) {
 	let required_attrs = ["name", "password"]
-	let user = await digestMessage(req.body["name"])
-	for(let i = 0; i < required_attrs.length; i++)
+	let user = await toHash(req.body["name"])
+	if(!verifyRequest(required_attrs, req))
 	{
-		if(!Object.hasOwn(req.body, required_attrs[i]))
-		{
-			res.status(400).send('Bad Request')
-			return
-		}
-	}
-	if(Object.keys(req.body).length != required_attrs.length)
-	{
-		res.status(400).send('Bad Request')
-		return
+		return sendBadRequest()
 	}
 	if(active_users[user])
 	{
 		return res.status(200).json({user_logged: active_users[user]})
 	}
-	let user_logged = await digestMessage(req.body["name"] + Date.now().toString())
+	let user_logged = await toHash(req.body["name"] + Date.now().toString())
 	active_users[user] = user_logged
 	return res.status(200).json({user_logged: user_logged})
 })
 
 router.post('/logout', async function (req, res) {
 	let required_attrs = ["name", "user_logged"]
-	let user = await digestMessage(req.body["name"])
-	for(let i = 0; i < required_attrs.length; i++)
+	let user = await toHash(req.body["name"])
+	if(!verifyRequest(required_attrs, req))
 	{
-		if(!Object.hasOwn(req.body, required_attrs[i]))
-		{
-			res.status(400).send('Bad Request')
-			return
-		}
+		return sendBadRequest()
 	}
-	if(Object.keys(req.body).length != required_attrs.length)
+	if(!verifyUserOnline(user))
 	{
-		res.status(400).send('Bad Request')
-		return
-	}
-	if(!active_users[user])
-	{
-		return res.status(400).send('Bad Request')
+		return sendBadRequest()
 	}
 	else
 	{
