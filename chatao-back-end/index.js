@@ -25,7 +25,17 @@ function verifyUserOnline(user)
 	return active_users[user] != undefined
 }
 
-function sendBadRequest()
+function verifyUserExistence(user)
+{
+	return users[user] != undefined
+}
+
+function sendBadRequest(res)
+{
+	res.status(400).send('Bad Request')
+}
+
+function sendSuccess()
 {
 	res.status(400).send('Bad Request')
 }
@@ -46,9 +56,9 @@ let active_users = {}
 router.post('/login', async function(req, res) {
 	let required_attrs = ["name", "password"]
 	let user = await toHash(req.body["name"])
-	if(!verifyRequest(required_attrs, req))
+	if(!verifyRequest(required_attrs, req) || verifyUserExistence(user))
 	{
-		return sendBadRequest()
+		return sendBadRequest(res)
 	}
 	if(active_users[user])
 	{
@@ -64,11 +74,11 @@ router.post('/logout', async function (req, res) {
 	let user = await toHash(req.body["name"])
 	if(!verifyRequest(required_attrs, req))
 	{
-		return sendBadRequest()
+		return sendBadRequest(res)
 	}
 	if(!verifyUserOnline(user))
 	{
-		return sendBadRequest()
+		return sendBadRequest(res)
 	}
 	else
 	{
@@ -77,8 +87,21 @@ router.post('/logout', async function (req, res) {
 	}
 })
 
-router.post('/signup', (req, res) => {
-	res.send("{}")
+router.post('/signup', async function (req, res) {
+	let required_attrs = ["name", "email", "password"]
+	if(!verifyRequest(required_attrs, req))
+	{
+		return sendBadRequest(res)
+	}
+	let user = await toHash(req.body["name"])
+	let email = await toHash(req.body["email"])
+	let password = await toHash(req.body["password"])
+	if(verifyUserExistence(user))
+	{
+		return res.status(409).send('User already signed up')
+	}
+	users[user] = { email: email, password: password }
+	return res.status(200).json({status: 'Success'})
 })
 
 router.get('/messages', (req, res) => {
