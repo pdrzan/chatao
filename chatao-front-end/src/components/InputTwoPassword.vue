@@ -1,9 +1,10 @@
 <script setup>
 import BoxPassword from './BoxPassword.vue';
 const props = defineProps({
-    id: String,
-    placeholder: String,
-    name: String,
+    id_1: String,
+    id_2: String,
+    name_1: String,
+    name_2: String,
     minlength: Number,
     maxlength: String,
 })
@@ -11,7 +12,8 @@ const props = defineProps({
 <template>
     <div class="box">
         <div class="text"> Senha </div>
-        <BoxPassword :id placeholder="Digite sua senha" :name_1 :minlength :maxlength :required="true" />
+        <BoxPassword :id="id_1" placeholder="Digite sua senha" :name_1 :minlength :maxlength :required="true" />
+        <BoxPassword :id="id_2" placeholder="Repita sua senha" :name_2 :minlength :maxlength :required="true" />
     </div>
 </template>
 <style scoped>

@@ -1,15 +1,16 @@
 <script setup>
-import BoxText from './BoxText.vue';
+import { defineModel } from 'vue';
+const model = defineModel();
 </script>
 <template>
-<div class="search">
-    <img src="../assets/media/search.png" alt="Magnifying glass" class="search-img" />
-    <input class="input" type="text" placeholder="Encontrar" />
-</div>
+    <div class="search">
+        <img src="../assets/media/search.png" alt="Magnifying glass" class="search-img" />
+        <input class="input" type="text" placeholder="Encontrar" name="search" v-model="model" />
+    </div>
 </template>
 <style scoped>
 .search {
-	box-sizing: border-box;
+    box-sizing: border-box;
     width: 100%;
     border-radius: 15px;
 
@@ -22,14 +23,16 @@ import BoxText from './BoxText.vue';
 
     background-color: var(--green-light);
 }
+
 .search-img {
     width: 20px;
 }
+
 .input {
     height: 100%;
     width: 100%;
     border: none;
     background-color: var(--green-light);
-	font-size: 16px;
+    font-size: 16px;
 }
 </style>
