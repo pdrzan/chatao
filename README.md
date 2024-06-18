@@ -1,5 +1,5 @@
-<div>
-    <img style="display:block; margin: auto" src="./chatao-front-end/src/assets/media/logo.png" alt="Logo image" />
+<div align="center">
+    <img src="./chatao-front-end/src/assets/media/logo.png" alt="Logo image" />
 </div>
 
 # Chatão
