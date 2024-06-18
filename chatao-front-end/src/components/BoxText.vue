@@ -9,7 +9,7 @@ const props = defineProps({
 })
 </script>
 <template>
-<input class="input" type="text" :id :placeholder :name :minlength :maxlength />
+    <input class="input" type="text" :id :placeholder :name :minlength :maxlength :required />
 </template>
 <style scoped>
 .input {
@@ -17,6 +17,6 @@ const props = defineProps({
     background-color: var(--green-light);
     border: none;
     border-radius: 15px;
-	flex-grow: 1;
+    flex-grow: 1;
 }
 </style>
