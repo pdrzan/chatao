@@ -1,12 +1,22 @@
 <script setup>
-const props = defineProps(['name', 'selected'])
+const props = defineProps({
+    name: String,
+    selected: Boolean,
+    id: String
+})
 import { RouterLink } from 'vue-router'
+import { computed } from 'vue';
+
+const toChatUrl = computed(() => {
+    return '/chat/' + props.id;
+})
+
 </script>
 <template>
-<RouterLink class="contact" :selected >
-    <img src="../assets/media/user.png" alt="Contact image" class="contact-img" />
-    <div class="contact-name"> {{ name }} </div>
-</RouterLink>
+    <RouterLink class="contact" :to="toChatUrl" :selected>
+        <img src="../assets/media/user.png" alt="Contact image" class="contact-img" />
+        <div class="contact-name"> {{ name }} </div>
+    </RouterLink>
 </template>
 <style scoped>
 .contact {
@@ -27,12 +37,15 @@ import { RouterLink } from 'vue-router'
     text-decoration: none;
     color: black;
 }
+
 .contact[selected="true"] {
     background-color: var(--gray-light);
 }
+
 .contact:hover {
     text-decoration: underline;
 }
+
 .contact-img {
     width: 40px;
 }
