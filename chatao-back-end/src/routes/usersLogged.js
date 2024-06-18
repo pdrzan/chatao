@@ -27,7 +27,7 @@ router.put("/", function(req, res) {
         userId: req.body.userId,
         })
         .then( userLogged => {
-            res.status(200).send(JSON.stringify(person));
+            res.status(200).send(JSON.stringify(userLogged));
         })
         .catch( err => {
             res.status(500).send(JSON.stringify(err));
@@ -37,7 +37,7 @@ router.put("/", function(req, res) {
 router.delete("/:id", function(req, res) {
     db.UserLogged.destroy({
         where: {
-            id: req.params.id
+            userId: req.params.id
         }
         })
         .then( userLogged => {
