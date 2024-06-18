@@ -1,29 +1,17 @@
 # chatao-front-end
 
-This template should help get you started developing with Vue 3 in Vite.
+## Como instalar as dependências
 
-## Recommended IDE Setup
+Para instalar todas as dependências vá até /chatao-front-end e execute:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```bash
+npm i
 ```
 
-### Compile and Hot-Reload for Development
+## Como rodar o front-end
 
-```sh
+Para rodar o front-end na porta 5173 vá até /chatao-front-end e execute:
+
+```bash
 npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
 ```
