@@ -14,9 +14,6 @@ const chatId = ref("");
 const textMessage = defineModel();
 
 onMounted(() => {
-	if (getCookie("userId") === undefined || getCookie("userId") === "" || getCookie("userId") === "undefined") {
-		return;
-	}
 	const data = {
 		userId_1: getCookie("userId"),
 		userId_2: route.params.userId
@@ -38,34 +35,6 @@ onMounted(() => {
 			}
 		})
 })
-
-watch(() => route.params.userId, (newId, oldId) => {
-	messages.value = [];
-	const data = {
-		userId_1: getCookie("userId"),
-		userId_2: newId
-	};
-	fetch('/api/message/chat', {
-		method: 'PUT',
-		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify(data)
-	})
-		.then((response) => {
-			if (response.status !== 200) {
-				alert("Não foi possível carregar a conversa.\nTente novamente.");
-			} else {
-				response.json()
-					.then((messagesResponse) => {
-						messages.value = messagesResponse.messages;
-						chatId.value = messagesResponse.chatId;
-					})
-			}
-		})
-})
-
-function wasSent(message) {
-	return message.userId_whosent === getCookie("userId");
-}
 
 function sendMessage(event) {
 	const data = {
@@ -89,6 +58,10 @@ function sendMessage(event) {
 					})
 			}
 		})
+}
+
+function wasSent(message) {
+	return message.userId_whosent === getCookie("userId");
 }
 
 const updateMessages = setInterval(() => {
@@ -115,6 +88,30 @@ onUnmounted(() => {
 	clearInterval(updateMessages);
 })
 
+watch(() => route.params.userId, (newId, oldId) => {
+
+	messages.value = [];
+	const data = {
+		userId_1: getCookie("userId"),
+		userId_2: newId
+	};
+	fetch('/api/message/chat', {
+		method: 'PUT',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(data)
+	})
+		.then((response) => {
+			if (response.status !== 200) {
+				alert("Não foi possível carregar a conversa.\nTente novamente.");
+			} else {
+				response.json()
+					.then((messagesResponse) => {
+						messages.value = messagesResponse.messages;
+						chatId.value = messagesResponse.chatId;
+					})
+			}
+		})
+})
 </script>
 <template>
 	<div class="chat">
@@ -127,8 +124,8 @@ onUnmounted(() => {
 			</div>
 			<div class="message-box">
 				<textarea placeholder="Digite sua mensagem" class="input-message" v-model="textMessage" />
-				<button class="send-button">
-					<img src="../assets/media/send.png" alt="Send image" class="send-img" @click="sendMessage" />
+				<button class="send-button" @click="sendMessage">
+					<img src="../assets/media/send.png" alt="Send image" class="send-img" />
 				</button>
 			</div>
 		</div>
