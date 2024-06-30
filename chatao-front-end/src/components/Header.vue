@@ -10,7 +10,7 @@ function sair() {
 			if (response.status !== 200) {
 				alert("Não foi possível finalizar a sua sessão.\nTente novamente");
 			} else {
-				document.cookie = "userId=";
+				document.cookie = "userId=; path=/";
 				router.push({ path: "/" });
 			}
 		})

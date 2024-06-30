@@ -5,9 +5,6 @@ import InputPasswordButton from './InputPasswordButton.vue'
 import { onMounted, resolveComponent, defineModel } from 'vue';
 
 onMounted(() => {
-    if (getCookie("userId") === undefined || getCookie("userId") === "" || getCookie("userId") === "undefined") {
-        return;
-    }
     fetch(`/api/user/${getCookie("userId")}`, {
         headers: { 'Content-Type': 'application/json' },
     })

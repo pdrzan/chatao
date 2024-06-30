@@ -26,7 +26,7 @@ async function signUp(event) {
             } else {
                 response.json()
                     .then((resData) => {
-                        document.cookie = `userId=${resData.userId}`;
+                        document.cookie = `userId=${resData.userId}; path=/`;
                         router.push({ path: '/chats' });
                     });
             }

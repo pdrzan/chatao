@@ -7,7 +7,7 @@ import { onActivated, onBeforeMount, onBeforeUpdate, onMounted, onUpdated } from
 
 onMounted(() => {
     if (getCookie("userId") === undefined || getCookie("userId") === "" || getCookie("userId") === "undefined") {
-        document.cookie = "userId=; Max-Age=-9999999;";
+        document.cookie = "userId=; path=/; Max-Age=-9999999;";
         router.push({ path: '/' });
         alert("Usuário não autenticado, faça seu login.");
     }

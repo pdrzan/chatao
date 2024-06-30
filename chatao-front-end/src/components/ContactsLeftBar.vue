@@ -15,9 +15,6 @@ const contactsFiltered = computed(() => {
 })
 
 onMounted(() => {
-    if (getCookie("userId") === undefined || getCookie("userId") === "" || getCookie("userId") === "undefined") {
-        return;
-    }
     const data = { userId: getCookie("userId") }
     fetch(`/api/user/contacts/`, {
         method: 'PUT',
