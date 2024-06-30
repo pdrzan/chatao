@@ -40,7 +40,7 @@ router.put("/chat", function(req, res) {
                     userId_2: req.body.userId_2
                 })
                     .then( chat => {
-                        res.status(200).send(JSON.stringify([]));
+                        res.status(200).send(JSON.stringify({ chatId: chat.id, messages: [] }));
                     })
                     .catch( err => {
                         console.log(err);
